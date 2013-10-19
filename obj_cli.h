@@ -14,7 +14,7 @@
 /** MAX OPTION */
 #define CLI_MAX_OPTION  255
 /** MAX TYPE */
-#define CLI_MAX_OBJECT  255
+#define CLI_MAX_OBJECRequest  255
 /** MAX ACTION */
 #define CLI_MAX_ACTION  255
 /** declare request variable */
@@ -58,7 +58,7 @@ template <class Request, class Context>
 struct CliAction
 {
     /** function */
-    typedef int (*CliAction_imp)(T& request, Context *context);
+    typedef int (*CliAction_imp)(Request& request, Context *context);
 
     /** action name */
     const char* action;
@@ -213,7 +213,7 @@ void print_usage(InvokeContext<Request,Context>  &env, bool completion)
  * @brief invoke with request
  */
 template <class Request, class Context>
-int CliInvoke(T &request, Context *context, InvokeContext<Request,Context> &env)
+int CliInvoke(Request &request, Context *context, InvokeContext<Request,Context> &env)
 {
     return (env.meta[env.object_index].actions[env.action_index].handler) (request, context);
 }
@@ -226,7 +226,7 @@ bool is_completion(int argc, char *argv[]);
  * @brief parse options
  */
 template <class Request, class Context>
-int CliParse(int argc, char *argv[], T &request, InvokeContext<Request,Context> &env)
+int CliParse(int argc, char *argv[], Request &request, InvokeContext<Request,Context> &env)
 {
     int missing_index = -1;
     int option_index = 0;
@@ -371,7 +371,7 @@ int CliParse(int argc, char *argv[], T &request, InvokeContext<Request,Context> 
 template <class Request, class Context>
 int CliInvoke(int argc, char *argv[], Context *context, InvokeContext<Request,Context> &env)
 {
-    T request;
+    Request request;
     int ret = CliParse(argc, argv, request, env);
     if(0 != ret){
         return ret;
@@ -389,7 +389,7 @@ int CliInvoke(int argc, char *argv[],
 {
     InvokeContext<Request,Context> env(argv[0], meta, meta_num,
             global_opt, global_opt_num, out, err);
-    T request;
+    Request request;
     int ret = CliParse(argc, argv, request, env);
     if(0 != ret){
         return ret;

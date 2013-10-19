@@ -8,6 +8,10 @@ Introduce
 This is used to handle command line input.
 Programers can write a struct to describe the input and accord function,
 Despite the getopt process and error handler
+eg:
+        make
+        ./objcli node set --meta=hank
+        ./objcli node get --meta=hank
 
 Usage
 --------
