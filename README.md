@@ -8,7 +8,8 @@ Introduce
 This is used to handle command line input.
 Programers can write a struct to describe the input and accord function,
 Despite the getopt process and error handler
-eg:
+
+### Example
         make
         ./objcli node set --meta=hank
         ./objcli node get --meta=hank
@@ -83,8 +84,11 @@ Here are some example:
 
 AutoComplete
 -------
-Besides, this program supplies auto-complete functions, users can use <Tab> to call the program give Tips
-eg:
+Besides, this program supplies auto-complete functions.
+
+Users can use <Tab> to call the program give Tips.
+
+### example
         ./objcli node <Tag>
         set get
 
